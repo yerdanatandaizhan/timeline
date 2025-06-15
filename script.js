@@ -85,7 +85,7 @@ const posts = [
     id: 13,
     title: "Первый Boozaji🍨",
     description: "Отпраздновали начало второго семестра)'",
-    imageUrl: "images/13.jpg",
+    imageUrl: "images/icecream.jpg",
     timestamp: "2025-01-21T21:00:12",
   },
   {
