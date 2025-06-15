@@ -1,0 +1,333 @@
+:root {
+  --frame-bg: #fff5f7; /* pale rose */
+  --border: #ff6b81; /* warm coral */
+  --accent: #e63946; /* strong Valentine red */
+  --text-body: #333333; /* dark gray for readability */
+  --text-muted: #555555;
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "PT Serif", serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-body);
+
+  /* Stronger pink gradient */
+  background: linear-gradient(
+    145deg,
+    rgba(255, 105, 180, 1) 0%,
+    /* hot pink */ rgba(255, 182, 193, 1) 40%,
+    /* light pink */ rgba(255, 192, 203, 1) 70%,
+    /* pink */ rgba(255, 240, 245, 1) 100% /* very pale pink */
+  );
+}
+
+#posts-container {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 48px; /* was 30px (or your previous value) */
+}
+/* ——— Frame & layout tweaks ——— */
+.post {
+  width: 75vw; /* slightly smaller */
+  max-width: 800px; /* cap at 800px */
+  margin: 30px auto; /* center with vertical gap */
+  padding: 20px; /* less padding inside */
+  display: flex;
+  border: 2px solid var(--border);
+  border-radius: 15px;
+  background: var(--frame-bg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ——— Left: larger square image ——— */
+/* ——————— Resize the image vs. details ——————— */
+.post-image {
+  /* was flex: 2; now smaller */
+  flex: 1.2; /* image takes ~1.2 parts vs text’s 1 part */
+  max-width: 60%; /* never wider than 60% of the card */
+  aspect-ratio: 1 / 1; /* keep it square */
+  margin-right: 30px;
+}
+
+.post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  max-height: 400px; /* lower the cap so it can’t grow too tall */
+}
+
+/* make the details area just one “unit” of flex */
+/* details column */
+.post-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ——————— Reduce description to one line ——————— */
+/* Title: single color, Montserrat */
+.post-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent); /* one uniform coral */
+  margin: 12px 0 16px;
+  line-height: 1.2;
+}
+
+/* Description: PT Serif for Cyrillic, less vertical weight */
+.description {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-body);
+  line-height: 1.5;
+  margin-bottom: auto; /* pushes timestamp down */
+
+  /* if you still want a clamp on lines: */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Timestamp at bottom */
+.timestamp {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 20px;
+}
+
+/* Make the live counter huge and responsive */
+.relative-time {
+  font-size: clamp(
+    1.7rem,
+    12vw,
+    1.7rem
+  ); /* grows with viewport, caps at 8rem */
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--accent); /* or whatever color you’re using */
+  margin-bottom: auto;
+
+  /* Remove truncation: */
+  display: block; /* normal flow */
+  overflow: visible; /* let it expand */
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  text-overflow: clip;
+  white-space: normal;
+  font-family: var(--font-heading);
+}
+.relative-time,
+.timestamp {
+  font-family: var(--font-heading) !important;
+}
+.hero {
+  /* full-screen sizing */
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  /* keep your gradient & glow */
+
+  /* remove the old border & rounding */
+  border: none;
+  border-radius: 0;
+
+  /* center content vertically + horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* make sure your text block doesn’t get too narrow */
+.hero-content {
+  max-width: 80%;
+  text-align: center;
+}
+
+/* adjust spacing inside */
+.hero-content h1,
+.hero-content h2,
+.hero-content p,
+.hero-content .hero-date {
+  margin: 0.5rem 0;
+}
+/* ===== Floating player at bottom-right ===== */
+.arrow {
+  background-color: transparent;
+  width: 150px;
+  position: fixed;
+  bottom: 100px;
+  right: 180px;
+}
+
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  width: 340px;
+  padding: 12px;
+  background: var(--accent); /* your deeppink */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-family: var(--font-body);
+  color: #fff;
+  z-index: 1000;
+}
+
+/* album art */
+.player-cover img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+
+/* track info & progress */
+.player-info {
+  flex: 1;
+}
+#track-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+#track-artist {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+.player-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+#progress {
+  width: 0%;
+  height: 100%;
+  background: #fff;
+}
+.time {
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* controls */
+.player-controls {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+}
+.player-controls button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px;
+}
+.player-controls button:hover {
+  opacity: 0.8;
+}
+/* common styles for both controls */
+.control-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  position: relative;
+  margin-left: 8px;
+}
+
+/* PLAY / PAUSE button could use the same class */
+#toggle {
+  font-size: 1.4rem; /* if you’re keeping ❚❚/▶︎ */
+}
+
+/* NEXT button: two right‐pointing triangles */
+.next-btn::before,
+.next-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #fff; /* white triangles */
+}
+
+/* position the two arrows */
+.next-btn::before {
+  left: 6px;
+}
+.next-btn::after {
+  left: 16px;
+}
+
+/* make sure it sits above everything and doesn’t block clicks */
+#hearts-container {
+  pointer-events: none; /* 🔑 let all mouse/touch events pass through */
+  width: 100%; /* use % instead of 100vw so you don’t cover the scrollbar */
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* each heart starts just above the viewport */
+.heart {
+  position: absolute;
+  top: -2em;
+  user-select: none;
+  will-change: transform, opacity;
+  /* you can tweak the look by changing font-size or color */
+  color: #ff6b81;
+  opacity: 0.8;
+  animation-name: fall;
+  animation-timing-function: linear;
+}
+
+/* animate from top to bottom, with a full spin and fade-out */
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+.time_img {
+  width: 100vw;
+  height: 100vh;
+}

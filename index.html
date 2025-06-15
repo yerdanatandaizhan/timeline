@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Our Timeline</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- put this at the top of your <body> -->
+
+    <img src="images/timel.png" class="time_img" alt="" />
+    <!-- POSTS CONTAINER -->
+    <div id="posts-container">
+      <!-- script.js will inject your .post cards here -->
+    </div>
+    <img src="images/tr_arrow.png" class="arrow" alt="" />
+    <!-- MUSIC PLAYER -->
+    <div class="music-player">
+      <audio id="audio" autoplay playsinline></audio>
+
+      <div class="player-cover">
+        <img id="cover" src="" alt="Album art" />
+      </div>
+
+      <div class="player-info">
+        <div id="track-title">Title</div>
+        <div id="track-artist">Artist</div>
+        <div class="player-progress" id="progress-container">
+          <div id="progress"></div>
+        </div>
+        <div class="time">
+          <span id="current-time">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <div class="player-controls">
+        <button id="toggle" title="Play/Pause">▶︎</button>
+        <button
+          id="next"
+          class="control-btn next-btn"
+          title="Next track"
+        ></button>
+      </div>
+    </div>
+    <div id="hearts-container"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
